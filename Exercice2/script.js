@@ -11,9 +11,12 @@
     let form = document.createElement("form");
     let input = document.createElement("input");
     let btnSubmit = document.createElement("input");
-    btnSubmit.setAttribute('type', 'submit')
+    form.setAttribute('name', 'emailForm');
+    btnSubmit.setAttribute('type', 'submit');
     btnSubmit.setAttribute('value', 'valider le mail');
+    btnSubmit.setAttribute('name', 'validate');
     input.setAttribute('type', 'email');
+    input.setAttribute('name', 'mail');
     form.appendChild(input);
     form.appendChild(btnSubmit);
     document.body.appendChild(form);
@@ -28,8 +31,20 @@
 
 function validateEmail() {
 
-    let emailContainer = document.querySelector("[type=email]");
-    console.log(emailContainer.textContent);
+    /**
+     * @description cette fonction permet de vérifier la validité d'un mail avec regex
+     */
+
+    let regex = /^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/;
+    let form = document.forms.emailForm
+    let inputEmail = form.elements.mail
+    
+    if(regex.test(inputEmail.value)) {
+        alert("email valide");
+    }
+    else {
+        alert("invalide");
+    }
 
 }
 
